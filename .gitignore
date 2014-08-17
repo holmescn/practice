@@ -19,3 +19,7 @@
 *.exe
 *.out
 *.app
+
+# Python compiled file.
+*.pyc
+*.pyd
