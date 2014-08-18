@@ -5,15 +5,16 @@
  *
  */
 
-#include<map>
-#include<vector>
 #include<algorithm>
+#include<vector>
+#include<map>
+#include<set>
 
 /**
  * This kind of implement could compile and pass the test
- * under gcc (4.8.3 in cygwin)
+ * under gcc (4.8.3 in cygwin) and VS2013 (vc 12.0)
  *
- * The other problem is that I should write each kind of
+ * The problem is that I should write each kind of
  * container that I want to support. That is not flexible
  * and perfect.
  */
@@ -28,5 +29,10 @@ bool has_key(const std::map<K, V> &m, const K &key) {
 template<typename K>
 bool has_key(const std::vector<K> &v, const K &key) {
     return std::find(v.begin(), v.end(), key) != v.end();
+}
+
+template<typename K>
+bool has_key(const std::set<K> &s, const K &key) {
+    return s.find(key) != s.end();
 }
 
