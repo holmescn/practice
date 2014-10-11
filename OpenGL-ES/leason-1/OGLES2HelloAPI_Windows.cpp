@@ -832,7 +832,7 @@ int WINAPI WinMain( _In_ HINSTANCE applicationInstance, _In_opt_ HINSTANCE previ
 	}
 	
 	// Renders a triangle for 800 frames using the state setup in the previous function
-	for (int i = 0; i < 800; ++i)
+	for (int i = 0; i < 80000; ++i)
 	{
 		if (!RenderScene(shaderProgram, eglDisplay, eglSurface, nativeWindow))
 		{
