@@ -25,7 +25,7 @@ USER_DIR = .
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -I$(GTEST_DIR)/include -std=c++11
+CXXFLAGS += -std=c++11 -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
@@ -75,13 +75,13 @@ gtest_main.a : gtest-all.o gtest_main.o
 # function.
 
 unittest03.o : $(USER_DIR)/unittest03.cc $(GTEST_HEADERS)
-	$(CXX) $(ccFLAGS) $(CXXFLAGS) -c $(USER_DIR)/unittest03.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/unittest03.cc
 
 unittest03 : unittest03.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 unittest11.o : $(USER_DIR)/unittest11.cc $(GTEST_HEADERS)
-	$(CXX) $(ccFLAGS) $(CXXFLAGS) -c $(USER_DIR)/unittest11.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/unittest11.cc
 
 unittest11 : unittest11.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

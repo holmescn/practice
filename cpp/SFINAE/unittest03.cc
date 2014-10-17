@@ -33,3 +33,9 @@ TEST(SFINAETest, HasMemberFunc) {
     EXPECT_FALSE(has_member_func<TestClass_Error_Signature>::value);
 }
 
+TEST(SFINAETest, HasMemberVar) {
+    EXPECT_TRUE(has_member_var_int<TestClass_Pass>::value);
+    EXPECT_FALSE(has_member_var_int<TestClass_Empty>::value);
+    EXPECT_FALSE(has_member_var_int<TestClass_ErrorType>::value);
+}
+

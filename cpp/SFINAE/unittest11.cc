@@ -13,6 +13,7 @@ struct TestClass_Empty {};
 
 struct TestClass_ErrorType {
     int member_func;
+    float member_var_int;
 };
 
 struct TestClass_ErrorSignature {
@@ -30,5 +31,11 @@ TEST(SFINAETest, HasMemberFunc) {
     EXPECT_FALSE(has_member_func<TestClass_Empty>::value);
     EXPECT_FALSE(has_member_func<TestClass_ErrorType>::value);
     EXPECT_FALSE(has_member_func<TestClass_ErrorSignature>::value);
+}
+
+TEST(SFINAETest, HasMemberVar) {
+    EXPECT_TRUE(has_member_var_int<TestClass_Pass>::value);
+    EXPECT_FALSE(has_member_var_int<TestClass_Empty>::value);
+    EXPECT_FALSE(has_member_var_int<TestClass_ErrorType>::value);
 }
 
