@@ -18,3 +18,10 @@ TEST(KMPTest, PMTGenerate) {
     EXPECT_TRUE(match);
 }
 
+TEST(KMPTest, KMPTest1) {
+    std::string str = "BBC ABCDAB ABCDABCDABDE";
+    std::string substr = "ABCDABD";
+    int idx = KMP(str, substr);
+    EXPECT_EQ(15, idx);
+}
+
