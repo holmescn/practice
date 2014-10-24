@@ -18,14 +18,17 @@
  * container that I want to support. That is not flexible
  * and perfect.
  */
+#if 0
 template<typename K, typename V>
 bool has_key(const std::map<K, V> &m, const K &key) {
     return m.find(key) != m.end();
 }
+#endif
 
 /**
  * Other sequence type container could do the same thing.
  */
+#if 0
 template<typename K>
 bool has_key(const std::vector<K> &v, const K &key) {
     return std::find(v.begin(), v.end(), key) != v.end();
@@ -34,5 +37,25 @@ bool has_key(const std::vector<K> &v, const K &key) {
 template<typename K>
 bool has_key(const std::set<K> &s, const K &key) {
     return s.find(key) != s.end();
+}
+#endif
+
+
+/**
+ *  New implementation with SFINAE.
+ *
+ *  The std::set could not use this because of ambiguous.
+ */
+template<typename T>
+bool has_key(const T &t, const typename T::key_type &key) {
+    return t.find(key) != t.end();
+}
+
+template<typename T>
+bool has_key(const T &t, const typename T::value_type &v) {
+    for (auto i = t.begin(); i != t.end(); i++) {
+        if (*i == v) return true;
+    }
+    return false;
 }
 
