@@ -3,14 +3,6 @@
  * in the given container. The goal is simple but the implement
  * that could cross the compiler is not as simple as I thought.
  *
- */
-
-#include<algorithm>
-#include<vector>
-#include<map>
-#include<set>
-
-/**
  * This kind of implement could compile and pass the test
  * under gcc (4.8.3 in cygwin) and VS2013 (vc 12.0)
  *
@@ -47,12 +39,12 @@ bool has_key(const std::set<K> &s, const K &key) {
  *  The std::set could not use this because of ambiguous.
  */
 template<typename T>
-bool has_key(const T &t, const typename T::key_type &key) {
+bool has_key(const T &t, const typename T::key_type &key) noexcept {
     return t.find(key) != t.end();
 }
 
 template<typename T>
-bool has_key(const T &t, const typename T::value_type &v) {
+bool has_key(const T &t, const typename T::value_type &v) noexcept {
     for (auto i = t.begin(); i != t.end(); i++) {
         if (*i == v) return true;
     }
