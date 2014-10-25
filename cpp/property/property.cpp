@@ -26,11 +26,16 @@ public:
     friend friend_class;
 };
 
+struct Vec2 {
+    int x, y;
+};
+
 class C {
 public:
     Property<int, C> property1;
     Property<float, C, PropertyType::ReadOnly> property2;
     Property<std::string, C, PropertyType::WriteOnly> property3;
+    Property<Vec2, C> property4;
 
     void TestSet() {
         property2.Set(10.1);
@@ -60,5 +65,7 @@ int main(int argc, char** argv) {
     //string s = c.property3;
     //cout << s << endl;
     c.TestGet();
+
+    c.property4 = Vec2 { 1, 1 };
 }
 
