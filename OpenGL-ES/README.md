@@ -39,3 +39,15 @@ function, such as vec\*, mat\*.
 After leason-2, the main.cpp will just handle draw function, other things will
 move out.
 
+The draw function finally move to a independent class named Render. And
+implement the OpenGL ES 2.0 Programming Guide Chapter 2: Hello Triangle.
+
+
+Lesson-3
+--------
+
+OpenGL ES 2.0 Programming Guide, Chapter 3: Introduction to EGL.
+
+More comment will be added into eglContext. Perhaps more test will be done in
+that class.
+
