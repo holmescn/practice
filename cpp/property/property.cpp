@@ -30,12 +30,21 @@ struct Vec2 {
     int x, y;
 };
 
+class C;
+
+template<>
+void Property<std::string, C, PropertyType::ReadOnly>::Set(const std::string &val) {
+    m_val = val;
+    m_val += " modified.";
+}
+
 class C {
 public:
     Property<int, C> property1;
     Property<float, C, PropertyType::ReadOnly> property2;
     Property<std::string, C, PropertyType::WriteOnly> property3;
     Property<Vec2, C> property4;
+    Property<std::string, C, PropertyType::ReadOnly> property5;
 
     void TestSet() {
         property2.Set(10.1);
@@ -44,7 +53,12 @@ public:
     void TestGet() {
         property3.Get();
     }
+
+    void TestSet2() {
+        property5.Set("XX");
+    }
 };
+
 
 int main(int argc, char** argv) {
     using namespace std;
@@ -67,5 +81,9 @@ int main(int argc, char** argv) {
     c.TestGet();
 
     c.property4 = Vec2 { 1, 1 };
+
+    c.TestSet2();
+    std::string s = c.property5;
+    cout << s << endl;
 }
 
