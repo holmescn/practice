@@ -1,0 +1,134 @@
+% 中文字体 TypeScript
+% 使用了Adobe 的字体
+% Adobe FangSongStd adobefangsongstd
+% Adobe HeitiStd    adobeheitistd
+% Adobe KaitiStd    adobekaitistd
+% Adobe SongStd     adobesongstd (包含 light)
+%
+% 请自行将上述字体Adobe Reader复制到 $HOME/.fonts
+%
+% 首先，要定义环境变量
+%
+% export OSFONTDIR=$HOME/.fonts
+%
+% 其次将type-adobe.tex 复制到 $CONTEXTDIR/tex/texmf-fonts/context/user
+%
+% 执行
+%
+% context --generate
+%
+% 使用：
+%
+% \usetypescriptfile[type-adobe]
+% \setupbodyfont[adobe, rm, 9pt]
+%
+% 更详细的字体说明：
+%
+% TODO：等有空的时候来补充
+%
+
+
+% Enable Unicode fonts
+\enableregime[utf]
+
+% Enable Capital Letter use
+% 不知道有啥用
+\setupcapitals[sc=yes]
+
+% Serif 有衬线字体
+% Sans Serif 无衬线字体
+
+\starttypescript[serif][adobe]
+\setups[font:fallbacks:serif]
+\definefontfallback[zhSerif][name:adobesongstd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifBold][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifItalic][name:adobesongstd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifBoldItalic][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+\starttypescript[sans][adobe]
+\setups[font:fallbacks:sans]
+\definefontfallback[zhSans][name:adobekaitistd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansBold][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansItalic][name:adobekaitistd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansBoldItalic][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+\starttypescript[mono][adobe]
+\setups[font:fallbacks:mono]
+\definefontfallback[zhMono][name:adobefangsongstd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoBold][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoItalic][name:adobefangsongstd][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoBoldItalic][name:adobeheitistd][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+\starttypescript[serif][adobe]
+\definefontsynonym[latinSerif][name:texgyrepagellaregular]
+\definefontsynonym[latinSerifBold][name:texgyrepagellabold]
+\definefontsynonym[latinSerifItalic][name:texgyrepagellaitalic]
+\definefontsynonym[latinSerifBoldItalic][name:texgyrepagellabolditalic]
+\stoptypescript
+
+\starttypescript[sans][adobe]
+\definefontsynonym[latinSans][name:texgyreherosregular]
+\definefontsynonym[latinSansBold][name:texgyreherosbold]
+\definefontsynonym[latinSansItalic][name:texgyreherositalic]
+\definefontsynonym[latinSansBoldItalic][name:texgyreherosbolditalic]
+\stoptypescript
+
+\starttypescript[mono][adobe]
+\definefontsynonym[latinMono][name:lmmono10regular]
+\definefontsynonym[latinMonoBold][name:lmmonolt10bold]
+\definefontsynonym[latinMonoItalic][name:lmmono10italic]
+\definefontsynonym[latinMonoBoldItalic][name:lmmonolt10boldoblique]
+\stoptypescript
+
+\starttypescript[serif][adobe]
+\setups[font:fallbacks:serif]
+\definefontsynonym[zhSeriffallback][latinSerif][fallbacks=zhSerif]
+\definefontsynonym[Serif][zhSeriffallback]
+\definefontsynonym[zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]
+\definefontsynonym[SerifBold][zhSerifBoldfallback]
+\definefontsynonym[zhSerifItalicfallback][latinSerifItalic][fallbacks=zhSerifItalic]
+\definefontsynonym[SerifItalic][zhSerifItalicfallback]
+\definefontsynonym[zhSerifBoldItalicfallback][latinSerifBoldItalic][fallbacks=zhSerifBoldItalic]
+\definefontsynonym[SerifBoldItalic][zhSerifBoldItalicfallback]
+\stoptypescript
+
+\starttypescript[sans][adobe]
+\setups[font:fallbacks:sans]
+\definefontsynonym[zhSansfallback][latinSans][fallbacks=zhSans]
+\definefontsynonym[Sans][zhSansfallback]
+\definefontsynonym[zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]
+\definefontsynonym[SansBold][zhSansBoldfallback]
+\definefontsynonym[zhSansItalicfallback][latinSansItalic][fallbacks=zhSansItalic]
+\definefontsynonym[SansItalic][zhSansItalicfallback]
+\definefontsynonym[zhSansBoldItalicfallback][latinSansBoldItalic][fallbacks=zhSansBoldItalic]
+\definefontsynonym[SansBoldItalic][zhSansBoldItalicfallback]
+\stoptypescript
+
+\starttypescript[mono][adobe]
+\setups[font:fallbacks:mono]
+\definefontsynonym[zhMonofallback][latinMono][fallbacks=zhMono]
+\definefontsynonym[Mono][zhMonofallback]
+\definefontsynonym[zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]
+\definefontsynonym[MonoBold][zhMonoBoldfallback]
+\definefontsynonym[zhMonoItalicfallback][latinMonoItalic][fallbacks=zhMonoItalic]
+\definefontsynonym[MonoItalic][zhMonoItalicfallback]
+\definefontsynonym[zhMonoBoldItalicfallback][latinMonoBoldItalic][fallbacks=zhMonoBoldItalic]
+\definefontsynonym[MonoBoldItalic][zhMonoBoldItalicfallback]
+\stoptypescript
+
+\starttypescript[math][adobe]
+\setups[font:fallbacks:math]
+\definefontsynonym[MathRoman][name:xitsmathregular][features=math\mathsizesuffix, goodies=xits-math]
+\stoptypescript
+
+\starttypescript[adobe]
+\definetypeface [adobe] [rm] [serif] [adobe][default][features=zh]
+\definetypeface [adobe] [ss] [sans]  [adobe][default][features=zh]
+\definetypeface [adobe] [tt] [mono]  [adobe][default]
+\definetypeface [adobe] [mm] [math]  [adobe]
+\stoptypescript
+
+

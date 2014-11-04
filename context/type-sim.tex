@@ -1,0 +1,142 @@
+% 中文字体 TypeScript
+% 使用了Windows里的 Sim 系列
+% SimSun
+% NSimSun
+% SimKai
+% Microsoft YaHei
+% FangSong
+% YouYuan
+% YaHei
+%
+% 请自行将上述字体从Windows复制到 $HOME/.fonts
+%
+% 首先，要定义环境变量
+%
+% export OSFONTDIR=$HOME/.fonts
+%
+% 其次将type-sim.tex 复制到 $CONTEXTDIR/tex/texmf-fonts/context/user
+%
+% 执行
+%
+% context --generate
+%
+% 使用：
+%
+% \usetypescriptfile[type-sim]
+% \setupbodyfont[sim, rm, 9pt]
+%
+
+% Enable Unicode fonts
+\enableregime[utf]
+
+% Enable Capital Letter use
+\setupcapitals[sc=yes]
+
+% Serif 有衬线字体
+% Sans Serif 无衬线字体
+% Mono 等宽字体
+
+% Serif 中文字体范围
+\starttypescript[serif][sim]
+\setups[font:fallbacks:serif]
+\definefontfallback[zhSerif][name:nsimsun][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifBold][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifItalic][name:nsimsun][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSerifBoldItalic][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+% Sans Serif 中文字体范围
+\starttypescript[sans][sim]
+\setups[font:fallbacks:sans]
+\definefontfallback[zhSans][name:nsimsun][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansBold][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansItalic][name:nsimsun][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhSansBoldItalic][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+% mono 中文字体范围
+\starttypescript[mono][sim]
+\setups[font:fallbacks:mono]
+\definefontfallback[zhMono][name:fangsong][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoBold][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoItalic][name:fangsong][0x00400-0x2FA1F][rscale=1.0]
+\definefontfallback[zhMonoBoldItalic][name:microsoftyahei][0x00400-0x2FA1F][rscale=1.0]
+\stoptypescript
+
+% serif of latin
+\starttypescript[serif][sim]
+\definefontsynonym[latinSerif][name:texgyrepagellaregular]
+\definefontsynonym[latinSerifBold][name:texgyrepagellabold]
+\definefontsynonym[latinSerifItalic][name:texgyrepagellaitalic]
+\definefontsynonym[latinSerifBoldItalic][name:texgyrepagellabolditalic]
+\stoptypescript
+
+% sans serif of latin
+\starttypescript[sans][sim]
+\definefontsynonym[latinSans][name:texgyreherosregular]
+\definefontsynonym[latinSansBold][name:texgyreherosbold]
+\definefontsynonym[latinSansItalic][name:texgyreherositalic]
+\definefontsynonym[latinSansBoldItalic][name:texgyreherosbolditalic]
+\stoptypescript
+
+% mono of latin
+\starttypescript[mono][sim]
+\definefontsynonym[latinMono][name:lmmono10regular]
+\definefontsynonym[latinMonoBold][name:lmmonolt10bold]
+\definefontsynonym[latinMonoItalic][name:lmmono10italic]
+\definefontsynonym[latinMonoBoldItalic][name:lmmonolt10boldoblique]
+\stoptypescript
+
+% define fallbacks of serif
+\starttypescript[serif][sim]
+\setups[font:fallbacks:serif]
+\definefontsynonym[zhSeriffallback][latinSerif][fallbacks=zhSerif]
+\definefontsynonym[Serif][zhSeriffallback]
+\definefontsynonym[zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]
+\definefontsynonym[SerifBold][zhSerifBoldfallback]
+\definefontsynonym[zhSerifItalicfallback][latinSerifItalic][fallbacks=zhSerifItalic]
+\definefontsynonym[SerifItalic][zhSerifItalicfallback]
+\definefontsynonym[zhSerifBoldItalicfallback][latinSerifBoldItalic][fallbacks=zhSerifBoldItalic]
+\definefontsynonym[SerifBoldItalic][zhSerifBoldItalicfallback]
+\stoptypescript
+
+% fallbacks of sans
+\starttypescript[sans][sim]
+\setups[font:fallbacks:sans]
+\definefontsynonym[zhSansfallback][latinSans][fallbacks=zhSans]
+\definefontsynonym[Sans][zhSansfallback]
+\definefontsynonym[zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]
+\definefontsynonym[SansBold][zhSansBoldfallback]
+\definefontsynonym[zhSansItalicfallback][latinSansItalic][fallbacks=zhSansItalic]
+\definefontsynonym[SansItalic][zhSansItalicfallback]
+\definefontsynonym[zhSansBoldItalicfallback][latinSansBoldItalic][fallbacks=zhSansBoldItalic]
+\definefontsynonym[SansBoldItalic][zhSansBoldItalicfallback]
+\stoptypescript
+
+% fallbacks of mono
+\starttypescript[mono][sim]
+\setups[font:fallbacks:mono]
+\definefontsynonym[zhMonofallback][latinMono][fallbacks=zhMono]
+\definefontsynonym[Mono][zhMonofallback]
+\definefontsynonym[zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]
+\definefontsynonym[MonoBold][zhMonoBoldfallback]
+\definefontsynonym[zhMonoItalicfallback][latinMonoItalic][fallbacks=zhMonoItalic]
+\definefontsynonym[MonoItalic][zhMonoItalicfallback]
+\definefontsynonym[zhMonoBoldItalicfallback][latinMonoBoldItalic][fallbacks=zhMonoBoldItalic]
+\definefontsynonym[MonoBoldItalic][zhMonoBoldItalicfallback]
+\stoptypescript
+
+% font of math
+\starttypescript[math][sim]
+\setups[font:fallbacks:math]
+\definefontsynonym[MathRoman][name:xitsmathregular][features=math\mathsizesuffix, goodies=xits-math]
+\stoptypescript
+
+% define typeface
+\starttypescript[sim]
+\definetypeface [sim] [rm] [serif] [sim][default][features=zhs]
+\definetypeface [sim] [ss] [sans]  [sim][default][features=zhs]
+\definetypeface [sim] [tt] [mono]  [sim][default]
+\definetypeface [sim] [mm] [math]  [sim]
+\stoptypescript
+
