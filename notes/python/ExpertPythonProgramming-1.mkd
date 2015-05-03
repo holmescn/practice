@@ -1,0 +1,84 @@
+% Python 高级编程学习笔记 1
+% 福柯 <holmesconan@gmail.com>
+% 2015-04-30
+
+# 引入
+
+每一个已经熟悉并在日常工作中使用 Python 的程序员, 都应该来读一下这本书: 《Python 高级编程》（《Expert Python Programming》，下面简称“高级编程”）。
+
+# 第一章
+
+## 安装
+
+标题写的是**安装 Python**, 其实是介绍了 *Python* 的一些基础的东西. 文章中提到了除 *CPyhton* 以外的几种实现, 例如在 *JVM* 上的 *Jython*, 在 *.NET* 上的 *IronPython*。不过随着 *Python* 的传播， 其实这两个移植平台都处于半死不活状态。不过 *PyPy* 目前还是非常的活跃的，而且速度也已经超过了基础的 *CPython*, 成为提高 *Python* 运行的一个重要途径。不过，使用 *ctypes* 或者 *boost::python* 扩展的 *Python* 还是提高性能的更加有效的策略. 因为 *PyPy* 在 *C API* 上的兼容问题, 使得一些 *Package* 无法在 *PyPy* 上运行. 这不能不说是一种遗憾.
+
+说到 *Windows* 版, 推荐 *Python(xy)* 这个包, 无论是日常使用, 还是做科学计算, 或者做日常开发, 都比官方的版本更加方便. 其本事的安装包就已经包含了大量的常用第三方软件包, 属于安装即用的. 而且运行速度也不错. 集成了*IPython* 环境, *MinGW*, 以及一些方便的工具来协助开发.
+
+## 定制交互式命令行
+
+交互环境启动时, 会查找 `PYTHONSTARTUP` 环境变量, 并执行该变量所指定文件里的脚本. 书中给出了一个可以 tab 自动补全的启动脚本. 不过, 使用 IPython 以后, 这个功能已经包含在内了.
+
+## PyPI
+
+作为打败 *Perl* 的神器, *PyPI* 以及 *setuptools*, *easy_install*, *pip* 已经被整个社区所熟知. 这里简单介绍了各种工具之间的内在联系. 首先, *Python* 提供了 *distutils* 模块, 可以方便地构建一个"包", 但这个工具没有提供包之间的依赖关系描述机制. 于是又引入了 *setuptools* 来解决这个问题. 在 *setuptools* 的基础上, *easy_install* 和 *pip* 负责解析这些依赖关系, 并从每个包描述的源地址获取并安装到系统上.
+
+这里还介绍了如何在 *Windows* 平台下, 把 *MinGW* 整合到 *distutils* 中. 如果使用了官方的安装包, 这一步还是很有用的. 因为一些模块是需要使用 *gcc* 编译的. 如果使用了 *Python(xy)* 这个包, 那么 *MinGW* 已经在那里了.
+
+## 可移动的环境
+
+对于那些经常奔波于各种地方的程序员来说, 除了随身的笔记本电脑, 另一个可能的选择就是配置一个可以装在U盘上的 *Python* 环境. 这个提供了几个方案:
+
+1. PortablePython. 为 Windows 准备的一个 *Python* 环境.
+2. Damn Small Linux. 可以在U盘上启动的 *Linux*, 当然也可以在虚拟机里运行.
+
+现在的 U 盘容量足够大, 可以把一个 *Windows* 系统直接装在 U 盘上, 所以, 这其实已经不是一个大的问题. 另外微软还出了一个 U 盘大小的, 插在显示器上就可以用的"电脑", 也是个不错的选择.
+
+## 编辑器
+
+万年不变的 *Vim* 和 *Emacs* 其实已经不是这个时代的宠儿了. 现在首推的当然应该是 **JetBrain** 公司的 *PyCharm*. 如果你心疼自己的银子, 那么, 另外一个选择是 *SublimeText*. 虽然后者也是付费软件, 但作者以极大的宽容给了社区最优惠的选择: 只有保存次数达到一定量的时候, 才弹出一个提示框, 提示你购买, 如果你点取消, 仍然可以继续使用, 而且没有任何限制. 配合上 *Anaconda* 插件, 其实可以取得很多 *IDE* 才能有的功能, 比如: 更好的代码补全,
+函数参数提示, 显示 *docstring* 等等. (*SublimeText* 如此宽松的版权策略, 居然还有人去破解TA, 真是很无语)
+
+# 第二章 语法最佳实践
+
+这一张开始进入 *Expert* 的正题了. 主要议题如下:
+
+* List comprehensions
+* 迭代器 (Iterators) 和生成器 (Generators)
+* 描述符 (Descriptors) 和属性 (Properties)
+* Decorators
+* contextlib
+
+瞬间感觉信息量爆炸.
+
+## List comprehensions
+
+这个术语在国内应该没有标准翻译, 不同的书, 作者都根据自己的理解给出一个名字. 这个功能其实就是 *FP* 语言里的 `map` 或者 `filter`. 基本作用就是在 *list* 的构造式里嵌入循环和判断, 然后由一个 *list* 构造出另一个 *list*. 例如:
+
+~~~~python
+[x for x in range(10) if x % 2 == 0]
+# Result:
+[0, 2, 4, 6, 8]
+~~~~
+
+相比于显示的循环, `List comprehensions` 执行的更快速, 结构也更简单. 有的时候, 在遍历一个
+*list* 的时候, 还想同时知道对应元素的 *index*, 当然你可以这样来:
+
+~~~~python
+seq = ['one', 'two', 'three']
+['{0} {1}'.format(i, seq[i]) for i in range(len(seq))]
+~~~~
+
+但这显然不是 *Pythonic* 的做法. 应该如何做呢? 要使用 `enumerate` 这个 *built-in* 函数:
+
+~~~~python
+seq = ['one', 'two', 'three']
+['{0} {1}'.format(i, v) for i, v in enumerate(seq)]
+~~~~
+
+这个代码有什么好处呢? 首先, 避免了每次都去索引 `seq`, 后面会讲到一个 *sequence* 在用下标索引
+的时候都会进行什么操作, 其次避免了中间生成的 *index sequence*.
+
+书中还讲了一下什么是 *Pythonic*. 就是充分利用了 *Python* 特性而写出的代码, 无论是一段 *snippets*
+还是 **interface** 的设计.
+
+## Iterators & Generators
