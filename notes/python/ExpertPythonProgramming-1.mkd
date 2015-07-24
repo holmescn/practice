@@ -82,3 +82,12 @@ seq = ['one', 'two', 'three']
 还是 **interface** 的设计.
 
 ## Iterators & Generators
+
+迭代器就是实现了:
+
+* next() 返回下一个元素.
+* __iter__() 返回迭代器本身.
+
+的一个类.
+
+
