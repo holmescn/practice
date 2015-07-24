@@ -1,12 +1,7 @@
 Practice
 ========
 
-Leaning is based on practice. So when I learned some thing, I will
-test it, and leave the tested code here.
-
-Directory
-=========
-
-Practice is organized by the language that implemented the idea or
-the technique that I learned.
+Practice is the best learning method. When I learned something, I may do some
+practices, and the most useful code will be left here for memorize. I hope after
+decades, I could be an expert programmer.
 
