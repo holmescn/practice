@@ -1,0 +1,3 @@
+# S7 Scheme
+
+https://ccrma.stanford.edu/software/snd/snd/s7.html
