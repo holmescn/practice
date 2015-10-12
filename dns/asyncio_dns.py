@@ -72,13 +72,16 @@ class DNSClientProtocol:
         loop = asyncio.get_event_loop()
         loop.stop()
 
-dns_svrs = ['8.8.4.4', '8.8.8.8', '180.76.76.76', '101.226.4.6']
+dns_svrs = ['156.154.70.1', '156.154.71.1', '199.85.126.10', '199.85.127.10']
 
 loop = asyncio.get_event_loop()
+
 url = "www.google.com"
+url = 'blogspot.no'
+
 connect = loop.create_datagram_endpoint(
     lambda: DNSClientProtocol(url, loop),
-    remote_addr=(dns_svrs[0], 53))
+    remote_addr=(dns_svrs[2], 53))
 transport, protocol = loop.run_until_complete(connect)
 loop.run_forever()
 transport.close()
