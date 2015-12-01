@@ -1,14 +1,8 @@
-let rec fib lst =
-    match lst with
-    | x::xs when x < 4000000 ->
-        match xs with
-        | y::ys -> fib ((x + y) :: lst)
-    | _ -> lst
+let rec f s a b =
+    if a < 4000000 then
+        if a % 2 <> 0 then f (s + a) b (a + b)
+        else f s b (a + b)
+    else s
 
-let result =
-    fib [1; 1]
-    |> List.filter (fun x -> x % 2 <> 0 && x < 4000000)
-    |> List.reduce (fun acc elem -> acc + elem)
-
-printfn "%A" result
+printfn "%A" (f 0 1 1)
 
