@@ -4,14 +4,15 @@
 
 # 龙虎榜 DataSet 准备
 
-1. 从 SummaryData 里取出所有的日期
-2. 对于每个日期, 获取当天的所有 SummaryData, 按照 StockId 排序
-3. 对于每一行 SummaryData, 收集 Code, Date, Volume, Turnover, ByFloatingStocks, ReasonCode. 其中, ReasonCode作为一个集合, 可能包含 1 至 4 个值.
-4. 对应每一行 SummaryData, 有一个 SummaryId, 可以获得对应的 10 个券商的交易记录. 收集 TraderId, AppearTimes, EscapeTimes, Buy, Sell, Total. 这里, TraderId, AppearTimes 都需要先统计出来, EscapeTimes 和 Target 有关, 可以先不理会. Buy, 	Sell, Total 并不是取买卖的钱数, 而是要通过钱数, 转换成占总股本的比例. 先用 Turnover / Volume 得到每股平均价格, 然后 Buy / Avg 得到股数, 最后通过对比 Volume, ByFloatingStocks 和 买卖的股数, 得到买卖占总股本的比例.
-
-最终可用的数据包括: ByFloatingStocks, ReasonCodeSet, (TraderId, AppearTimes, EscapeTimes, Buy, Sell, Total) * 10, ReasonCodeSet 将作为一个统一的分类项, 而不是分开处理.
-
-因为 DataSet 没有查询的需求, 所以不存在 SQLite 里了, 直接存成 JSON 文件,格式如下:
+1. 获得 Summary 里的日期列表
+2. 给定一个日期，获得一个 code 列表
+3. 获得 name, stockId
+4. 根据 date, stockId, 获得 ReasonCodeSet, SummaryIds
+5. 根据 SummaryId, 获取 volume, proportion
+6. 根据 SummaryId, 获取 traderId, buyAmount, sellAmount
+7. 根据 traderId, 统计这个 trader 的 appearTimes 和 successRatio
+8. 计算 buyAmount 和 sellAmount 的比例
+9. 计算资金净值 totalAmount，以及净值的 比例
 
 ~~~~json
 [
@@ -21,7 +22,7 @@
 		"date": "2015-12-12",
 		"volume": 1000,
 		"turnover": 1.0,
-		"byFloatingStocks": 1.0,
+		"proportion": 1.0,
 		"reasonCodeSet": [1, 2, 3],
 		"traders": [
 			{
