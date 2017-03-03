@@ -13,7 +13,7 @@ OpenGL, and build my own library and framework.
 After tried AMD OpenGL ES SDK which is only worked on AMD GPUs, PowerVR SDK
 which could not work under Win8.1 and Angle Project which is part of chromium,
 the only one could satisfied my develop environment is Angle Project. I code
-the practice by VS2013 (perhaps soon 2014, or use CMake). Code will based on
+the practice by VS2013 (perhaps soon 2015, or use CMake). Code will based on
 C++11 which is my favourite programming language, so VS less than 2013 could
 not run the code.
 
