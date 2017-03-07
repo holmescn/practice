@@ -1,3 +1,6 @@
 [submodule "cpp/submodules/Catch"]
 	path = cpp/submodules/Catch
 	url = https://github.com/philsquared/Catch
+[submodule "Catch"]
+	path = Catch
+	url = https://github.com/philsquared/Catch
