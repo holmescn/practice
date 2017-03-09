@@ -1,8 +1,11 @@
+#include <assert.h>
+#include <stdlib.h>
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target) {
-    int *result = malloc(sizeof(int) * 2);
+    int *result = (int*)malloc(sizeof(int) * 2);
 
     for (int i = 0; i < numsSize; ++i) {
         int v2 = target - nums[i];
@@ -16,4 +19,15 @@ int* twoSum(int* nums, int numsSize, int target) {
     }
 
     return result;
+}
+
+int main(int argc, char** argv) {
+
+    // Case 1
+    int input1[] = {2, 7, 11, 15};
+    int *r1 = twoSum(input1, 4, 9);
+    assert( r1[0] == 0 );
+    assert( r1[1] == 1 );
+
+    return 0;
 }

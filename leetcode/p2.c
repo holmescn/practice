@@ -43,3 +43,8 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
 
     return root;
 }
+
+int main(int argc, char** argv) {
+
+    return 0;
+}
